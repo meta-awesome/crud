@@ -8,7 +8,7 @@ use Illuminate\Database\QueryException;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-abstract class CrudController extends Controller
+class CrudController extends Controller
 {
     protected $model;
     protected $view;
