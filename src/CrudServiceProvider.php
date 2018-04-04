@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Metawesome\Crud;
 
 use Illuminate\Support\ServiceProvider;
 
