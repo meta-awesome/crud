@@ -1,0 +1,28 @@
+stages:
+  - sonar
+
+sonar:
+  stage: sonar
+  tags:
+    - sonar
+  script:
+    - echo executing sonar...
+    - sonar-scanner -Dsonar.projectKey=%CI_PROJECT_NAME% -Dsonar.sources=.
+  only:
+    - master
+    - /^fix/sonar-.*$/
+
+sonarqube_preview:
+  stage: sonar
+  tags:
+    - sonar
+  script:
+    - echo executing sonar...
+    - git checkout origin/master
+    - git merge %CI_COMMIT_SHA% --no-commit --no-ff
+    - sonar-scanner -Dsonar.projectKey=%CI_PROJECT_NAME% -Dsonar.sources=. -Dsonar.gitlab.project_id=%CI_PROJECT_ID% -Dsonar.gitlab.commit_sha=%CI_COMMIT_SHA% -Dsonar.gitlab.ref_name=%CI_COMMIT_REF_NAME% -Dsonar.analysis.mode="preview"
+  except:
+    - master
+    - /^hotfix_.*$/
+    - /.*-hotfix$/
+
