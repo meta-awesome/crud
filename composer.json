@@ -1,5 +1,6 @@
 {
     "name": "metawesome/crud",
+    "version": "dev",
     "authors": [
         {
             "name": "Marcelo Burkard",
