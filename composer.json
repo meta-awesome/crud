@@ -1,0 +1,11 @@
+{
+    "name": "metawesome/crud",
+    "authors": [
+        {
+            "name": "Marcelo Burkard",
+            "email": "marcelo.burkard@meta.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
