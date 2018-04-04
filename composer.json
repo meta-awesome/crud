@@ -7,5 +7,6 @@
             "email": "marcelo.burkard@meta.com.br"
         }
     ],
-    "require": {}
+    "require": {},
+    "license": "MIT"
 }
