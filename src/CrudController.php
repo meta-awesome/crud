@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Metawesome\Crud;
 
 use DB;
 use Illuminate\Http\Request;
