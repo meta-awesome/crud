@@ -294,11 +294,11 @@ class CrudController extends Controller
         }
 
         return $this->getView()
-                  ->whereNotNull($coluna)
-                  ->where($where)
-                  ->select($select)
-                  ->orderBy($coluna, 'asc')
-                  ->get();
+                    ->whereNotNull($coluna)
+                    ->where($where)
+                    ->select($select)
+                    ->orderBy($coluna, 'asc')
+                    ->get();
     }
 
     public function getOptionsAtiva(Request $request)
