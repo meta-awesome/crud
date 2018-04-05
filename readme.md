@@ -1,6 +1,8 @@
 # Metawesome
 ## Crud
 
+[![pipeline status](http://gitlab.meta.com.br/meta-awesome/crud/badges/master/pipeline.svg)](http://gitlab.meta.com.br/meta-awesome/crud/commits/master) [![coverage report](http://gitlab.meta.com.br/meta-awesome/crud/badges/master/coverage.svg)](http://gitlab.meta.com.br/meta-awesome/crud/commits/master)
+
 ### Installation
 
 Via [composer](http://getcomposer.org):
