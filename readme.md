@@ -3,14 +3,24 @@
 
 ### Installation
 
-```
-composer require metawesome/crud:dev-master
+Via [composer](http://getcomposer.org):
+
+```bash
+$ composer require metawesome/crud:dev-master
 ```
 
-A seguir, adicionar o CrudServiceProvider ao array de providers em config/app.php:
+A seguir, adicionar o `CrudServiceProvider` ao array de `providers` em `config/app.php`:
 
-> // config/app.php
-> 'providers' => [
->    ...
->    Metawesome\Crud\CrudServiceProvider::class,
->];
+```php
+// config/app.php
+'providers' => [
+    ...
+    Metawesome\Crud\CrudServiceProvider::class,
+];
+```
+
+E em seguida atualize os arquivos de autoload:
+
+```bash
+$ composer dump-autoload
+```
