@@ -288,14 +288,17 @@ class CrudController extends Controller
         $idRaw   = "id AS {$idAlias}";
         array_push($select, DB::raw($idRaw));
 
-        $view  = $this->getView()
-                    ->whereNotNull($coluna);
+        $where = [];
         if ($ativo) {
-            $view = $view->where('ativo', 1);
+            $where['ativo'] = 1;
         }
-        return $view->select($select)
-                    ->orderBy($coluna, 'asc')
-                    ->get();
+
+        return $this->getView()
+                  ->whereNotNull($coluna)
+                  ->where($where)
+                  ->select($select)
+                  ->orderBy($coluna, 'asc')
+                  ->get();
     }
 
     public function getOptionsAtiva(Request $request)
