@@ -124,18 +124,13 @@ class CrudController extends Controller
             $filter = (array) json_decode($filter);
         }
 
-        $where  = $this->getWhereRecursive($filter);
-
-        return $where;
+        return $this->getWhereRecursive($filter);
     }
 
     /**
      * Função genérica que implementa a função de busca LIKE %{}%
      * Retorna array para ser usado dentro do where() do Eloquent
      * Funciona apenas para atributos referentes à model padrão
-     *
-     * @todo Implementar de forma genérica a busca dentro de outras
-     *       models relacionadas.
      *
      * @author Marcelo Burkard <marcelo.burkard@meta.com.br>
      * @since  11/04/2017
@@ -236,9 +231,9 @@ class CrudController extends Controller
 
         if (! $isDeleteBlocked) {
             try {
-                $model = $this->getModel()
-                              ->find($id)
-                              ->delete();
+                $this->getModel()
+                     ->find($id)
+                     ->delete();
             } catch (QueryException $error) {
                 return response(['message' => 'Existem dependências deste registro.'], 500);
             }
@@ -278,7 +273,7 @@ class CrudController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return Array
      */
-    public function getOptions(Request $request)
+    public function getOptions(Request $request, $ativo = false)
     {
         $coluna = $request->input('coluna', 'id');
 
@@ -293,33 +288,18 @@ class CrudController extends Controller
         $idRaw   = "id AS {$idAlias}";
         array_push($select, DB::raw($idRaw));
 
-        return $this->getView()
-                    ->whereNotNull($coluna)
-                    ->select($select)
+        $view  = $this->getView()
+                    ->whereNotNull($coluna);
+        if ($ativo) {
+            $view = $view->where('ativo', 1);
+        }
+        return $view->select($select)
                     ->orderBy($coluna, 'asc')
                     ->get();
     }
 
     public function getOptionsAtiva(Request $request)
     {
-        $coluna = $request->input('coluna', 'id');
-
-        $select = [];
-        if ($coluna != 'id') {
-            $colunaAlias = $request->input('colunaAlias', $coluna);
-            $colunaRaw   = "DISTINCT({$coluna}) AS {$colunaAlias}";
-            array_push($select, DB::raw($colunaRaw));
-        }
-
-        $idAlias = $request->input('idAlias', 'id');
-        $idRaw   = "id AS {$idAlias}";
-        array_push($select, DB::raw($idRaw));
-
-        return $this->getView()
-                    ->whereNotNull($coluna)
-                    ->where('ativo', 1)
-                    ->select($select)
-                    ->orderBy($coluna, 'asc')
-                    ->get();
+        return $this->getOptions($request, true);
     }
 }
