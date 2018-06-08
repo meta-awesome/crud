@@ -144,7 +144,7 @@ class CrudController extends Controller
     {
         array_walk($array, function ($value, $key) use (&$where) {
             // Chaves estrangeiras são sempre numericas
-            if ($this->endsWith($key, '_id')) {
+            if ($this->endsWith($key, '_id' && $value != '')) {
                 array_push($where, [$key, $value]);
             } elseif (!is_array($value) && $value != '') {
                 // Executa query case insentive transformando strings em maiusculo
