@@ -11,6 +11,8 @@ Via [composer](http://getcomposer.org):
 $ composer require metawesome/crud:dev-master
 ```
 
+#### Laravel
+
 A seguir, adicionar o `CrudServiceProvider` ao array de `providers` em `config/app.php`:
 
 ```php
@@ -20,6 +22,15 @@ A seguir, adicionar o `CrudServiceProvider` ao array de `providers` em `config/a
     Metawesome\Crud\CrudServiceProvider::class,
 ];
 ```
+
+#### Lumen
+
+```php
+// bootstrap/app.php
+$app->register(Metawesome\Crud\CrudServiceProvider::class);
+```
+
+#### Finalizar
 
 E em seguida atualize os arquivos de autoload:
 
