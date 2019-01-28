@@ -186,7 +186,7 @@ class CrudController extends Controller
         $this->validate($request, $this->getValidationRules());
 
         return $this->getModel()
-                    ->updateOrCreate($request->only('id'), $request->except('id'));
+                    ->updateOrCreate(['id' => $request->input('id', null)], $request->except('id'));
     }
 
    /**
